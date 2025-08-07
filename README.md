@@ -10,10 +10,14 @@ Consider the "shift wheel" above. The outer alphabet on the wheel is used to bui
 Of course, to decrypt the message, we shift the inner wheel to its original position, 2 units back in the counterclockwise direction. As one can see, knowing the shift value (private key) makes decrypting the message much easier.
 ### Functions
 This program utilizes two key functions: encrypt and decrypt.
-    - encrypt(message: str)
+
+- ```encrypt(message: str)```
+  
     The encrypt function handles the automatic encryption of messages. The string module is used to store the characters that will be used for the message and the choice function from the random module randomizes the shift value (private key) upon each message encryption. Note that the shift in the function is applied in the counterclokwise direction, hence, decryption will be in the clockwise direction. A translation table is used instead of looping to improve efficiency, allowing for the transformation to be applied over one pass of the message i.e., 'abc...ABC...012' -> 'bcd...BCD...123' in the case where the shift values are both 1.
     Returns a tuple of the form ('abc', 13, 5), where 'abc' is the encrypted message, 13 is the shift applied to the letters, and 5 is the shift appled to the digits.
-    - decrypt(message: str, letter_shift: int, digit_shift: int)
+  
+- ``` decrypt(message: str, letter_shift: int, digit_shift: int)```
+
     The decrypt function inverts the encryption function, taking the encrypted message as a parameter, along with both of the shift values. The function maps each shifted character back to its original position in the chars string.
 Both encrypt and decrypt are called within the main function, depending on whether the user enters '-e' or '-d' in positon 1 of the command line.
 When looking to encrypt a message, simply run the program with '-e' entered in the command line and then enter the message when prompted. After the encrypted message is copied and sent, it can be decrypted as follows: run the script with '-d' entered in the terminal and when prompted, enter a tuple of the form ('m', 12, 1), where m is the encrypted message, 12 is the letter shift key, and 1 is the digit shift key. Note that the quotation marks around the message are necessary.
